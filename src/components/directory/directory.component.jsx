@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 
 import MenuItem from '../menu-item/menu-item.component';
 import './directory.styles.scss'
-import mens from '../../images/mens.jpg';
-import women from '../../images/womens.jpg';
-import hats from '../../images/hats.jpg'
-import jackets from '../../images/jackets.jpg'
-import sneakers from '../../images/sneakers.jpg'
+
 class Directory extends Component {
 
     constructor(props) {
