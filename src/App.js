@@ -6,9 +6,11 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Shop from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
+
+
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-
-
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/users.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
@@ -55,6 +57,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={< Shop />} />
+          <Route exact path="/checkout" element={< CheckoutPage />} />
           <Route exact path="/signin" element={this.props.currentUser ? (<Navigate to='/' />) : (<SignInSignUp />)} />
         </Routes>
 
