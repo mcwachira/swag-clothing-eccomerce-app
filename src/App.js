@@ -51,7 +51,7 @@ class App extends Component {
     return (
       <div>
 
-
+        {/* Header outside the routes as routes so as to appear every page our app . as Navigation  */}
         <Header />
 
         <Routes>
