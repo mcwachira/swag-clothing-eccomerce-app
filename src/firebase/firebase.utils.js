@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 
-//enables you to use gooleAuth -provider in your app
+//enables you to use googleAuth -provider in your app
 import { GoogleAuthProvider } from "firebase/auth";
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
