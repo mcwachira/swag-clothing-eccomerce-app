@@ -56,9 +56,7 @@ export const CustomButtonContainer = styled.button`
 	font-size: 15px;
 
 	text-transform: uppercase;
-	font-family: 'Open Sans Condensed';Compiled with problems:￼X
-
-ERROR
+	font-family: 'Open Sans Condensed';
 
 	font-weight: bolder;
 	border: none;

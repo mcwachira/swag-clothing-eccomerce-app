@@ -10,11 +10,12 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/users.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
+// import { selectCollectionOverview } from './redux/shop/shop.selector.'
 class App extends Component {
 
 
@@ -24,7 +25,10 @@ class App extends Component {
 
   componentDidMount() {
 
-    const { setCurrentUser } = this.props
+    const { setCurrentUser, collectionArray } = this.props
+    // console.log(collectionArray)
+
+    //observable of onAuthStateChange
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
@@ -41,6 +45,13 @@ class App extends Component {
         })
       }
       setCurrentUser(userAuth)
+
+      //used to add data to our firebase database
+      // addCollectionAndDocuments('collection', collectionArray.map(({ title, items }) => ({
+      //   title, items
+
+      // }))
+      // )
     })
   }
 
@@ -68,7 +79,10 @@ class App extends Component {
   }
 }
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+
+  //used to add data to our firebase database
+  // collectionArray: selectCollectionOverview,
 })
 
 
