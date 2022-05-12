@@ -4,8 +4,9 @@ import logger from "redux-logger";
 
 import rootReducer from "./root-reducer";
 
+import thunk from 'redux-thunk'
 //setting up our middleware as  an array of multiple middleware
-const middlewares = [];
+const middlewares = [thunk];
 
 
 //apply the logger only in development

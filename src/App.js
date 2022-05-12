@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 import HomePage from './pages/homepage/HomePage.component'
@@ -8,28 +8,24 @@ import Header from './components/header/header.component';
 import SignInSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
 
-
-
 import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/users.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
 // import { selectCollectionOverview } from './redux/shop/shop.selector.'
-class App extends Component {
+const App = ({ setCurrentUser, collectionArray, currentUser }) => {
+
 
 
 
   //property to prevent memory leaks in our app
-  unsubscribeFromAuth = null;
 
-  componentDidMount() {
 
-    const { setCurrentUser, collectionArray } = this.props
-    // console.log(collectionArray)
-
+  useEffect(() => {
+    let unsubscribeFromAuth = null;
     //observable of onAuthStateChange
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
 
@@ -53,31 +49,32 @@ class App extends Component {
       // }))
       // )
     })
-  }
+    return () => {
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth()
-  }
-  render() {
-    return (
-      <div>
+      unsubscribeFromAuth()
+    }
 
-        {/* Header outside the routes as routes so as to appear every page our app . as Navigation  */}
-        <Header />
+  }, [setCurrentUser])
 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop/*" element={<Shop />} />
-          <Route path="/checkout" element={< CheckoutPage />} />
-          <Route path="/signin" element={this.props.currentUser ? (<Navigate to='/' />) : (<SignInSignUp />)} />
-        </Routes>
+  return (
+    <div>
+
+      {/* Header outside the routes as routes so as to appear every page our app . as Navigation  */}
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop/*" element={<Shop />} />
+        <Route path="/checkout" element={< CheckoutPage />} />
+        <Route path="/signin" element={currentUser ? (<Navigate to='/' />) : (<SignInSignUp />)} />
+      </Routes>
 
 
 
-      </div>
-    );
-  }
+    </div>
+  );
 }
+
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 
