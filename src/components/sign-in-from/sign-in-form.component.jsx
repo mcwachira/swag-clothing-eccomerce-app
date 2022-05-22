@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import FormInput from '../form-input/form-input.component'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
 import Button from '../Button/button.component'
+import { UserContext } from '../../contexts/user.context'
 import './sign-in-form.styles.scss'
 const formFields = {
     email: "",
@@ -10,6 +11,12 @@ const formFields = {
 }
 const SignInForm = () => {
     const [signInData, setSignInData] = useState(formFields)
+
+
+    //get setCurrentUser fro userContext
+
+    const { setCurrentUser } = useContext(UserContext)
+
 
     console.log(signInData)
     //
@@ -22,11 +29,16 @@ const SignInForm = () => {
 
     }
 
+    //
+
+
+
     const resetSignInData = () => {
         setSignInData(formFields)
     }
 
 
+    //function to enable us to sign in using our google account
     //why ise this???
     // const SignInWithGoogle = async() => {
     //     const {user } = await signInWithGooglePopup();
@@ -39,12 +51,12 @@ const SignInForm = () => {
 
         try {
 
-            //here we are creating a user who will have the email and password passed in the method and the user will be stored in firebase
-            const response = await signInWithEmailAndPassword(getAuth(), email, password)
+            //Firebase method to help us to sign in using our email and password 
+            const { user } = await signInWithEmailAndPassword(getAuth(), email, password)
 
+            setCurrentUser(user)
             resetSignInData()
 
-            console.log(response)
         } catch (error) {
 
             switch (error.code) {
@@ -97,6 +109,9 @@ const SignInForm = () => {
                 />
                 <div className="button-Container">
                     <Button type='submit'> Submit</Button>
+
+                    {/* passed the firebase signInWithGooglePopup method directly on the onclick method 
+                    instead of passing another function to help us sign in with google */}
                     <Button type='button' buttonType="google" onClick={() => (signInWithGooglePopup())}> Sign in with Google</Button>
 
 

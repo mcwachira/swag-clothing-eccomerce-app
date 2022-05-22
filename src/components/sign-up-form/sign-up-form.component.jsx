@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component';
 
 import './sign-up-form.styles.scss'
 import Button from '../Button/button.component';
+
+import { UserContext } from '../../contexts/user.context';
 //setting up an object that will contain the initial form values
 const formFields = {
     displayName: "",
@@ -21,6 +23,10 @@ const SignUpForm = () => {
     //setting up state for our form
     const [formData, setFormData] = useState(formFields);
 
+    //get setCurrentUser fro userContext
+
+    const { setCurrentUser } = useContext(UserContext)
+
     const { displayName, email, number, password, confirmPassword } = formData;
 
     const auth = getAuth()
@@ -33,6 +39,7 @@ const SignUpForm = () => {
         setFormData({ ...formData, [name]: value })
 
     }
+
 
 
     //resetting our form inputs fields
@@ -57,6 +64,8 @@ const SignUpForm = () => {
 
             //here we are creating a new document and passing the display name from our for to our user data
             await createUserDocumentFromAuth(user, { displayName, number })
+
+            setCurrentUser(user)
             resetFormFields()
 
         } catch (error) {

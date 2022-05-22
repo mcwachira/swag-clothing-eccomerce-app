@@ -7,7 +7,8 @@ import {
     signInWithPopup,
     signInWithRedirect,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut,
 } from 'firebase/auth'
 
 
@@ -108,3 +109,12 @@ export const signAuthUserWithEmailAndPassword = async (email, password) => {
 
     return await signInWithEmailAndPassword(email, password)
 }
+
+
+
+//auth keeps the value of the current user
+export const signOutUser = () => signOut(auth);
+
+
+
+

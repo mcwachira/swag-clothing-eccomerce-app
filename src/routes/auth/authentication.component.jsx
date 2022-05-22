@@ -1,5 +1,4 @@
 import React from 'react'
-import { signInWithGooglePopup, createUserDocumentFromAuth, SignInWithGoogleRedirect } from '../../utils/firebase/firebase.utils'
 import SignUpForm from '../../components/sign-up-form/sign-up-form.component'
 import SignInForm from '../../components/sign-in-from/sign-in-form.component'
 
