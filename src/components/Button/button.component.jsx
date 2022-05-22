@@ -1,6 +1,8 @@
 import React from 'react'
 import './button.styles.scss'
 
+
+//this object specifies the styles will give our button based on its type
 const BUTTON_TYPE_CLASSES = {
     google: 'google-sign-in',
     inverted: 'inverted',
