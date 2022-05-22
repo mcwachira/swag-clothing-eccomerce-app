@@ -11,13 +11,13 @@ const Navigation = () => {
 
     //getting current user from context 
 
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
 
 
 
     const signOutHandler = async () => {
         await signOutUser()
-        setCurrentUser(null)
+
     }
     return (
         <Fragment>

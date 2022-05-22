@@ -3,7 +3,7 @@ import FormInput from '../form-input/form-input.component'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
 import Button from '../Button/button.component'
-import { UserContext } from '../../contexts/user.context'
+
 import './sign-in-form.styles.scss'
 const formFields = {
     email: "",
@@ -15,7 +15,7 @@ const SignInForm = () => {
 
     //get setCurrentUser fro userContext
 
-    const { setCurrentUser } = useContext(UserContext)
+    // const { setCurrentUser } = useContext(UserContext)
 
 
     console.log(signInData)
@@ -40,10 +40,10 @@ const SignInForm = () => {
 
     //function to enable us to sign in using our google account
     //why ise this???
-    // const SignInWithGoogle = async() => {
-    //     const {user } = await signInWithGooglePopup();
-    //     await createUserDocumentFromAuth(user)
-    // }
+    const SignInWithGoogle = async () => {
+        await signInWithGooglePopup();
+
+    }
     //function to enable us to submit our form to firebase
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -54,7 +54,7 @@ const SignInForm = () => {
             //Firebase method to help us to sign in using our email and password 
             const { user } = await signInWithEmailAndPassword(getAuth(), email, password)
 
-            setCurrentUser(user)
+
             resetSignInData()
 
         } catch (error) {
@@ -112,7 +112,7 @@ const SignInForm = () => {
 
                     {/* passed the firebase signInWithGooglePopup method directly on the onclick method 
                     instead of passing another function to help us sign in with google */}
-                    <Button type='button' buttonType="google" onClick={() => (signInWithGooglePopup())}> Sign in with Google</Button>
+                    <Button type='button' buttonType="google" onClick={SignInWithGoogle}> Sign in with Google</Button>
 
 
                 </div>
