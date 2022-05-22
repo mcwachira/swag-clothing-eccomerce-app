@@ -6,6 +6,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     signInWithRedirect,
+    createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
 
@@ -45,13 +46,23 @@ export const auth = getAuth()
 
 //sign in with popup
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+export const SignInWithGoogleRedirect = () => signInWithRedirect(auth, provider)
 
 
 //initializing our firestore db
 
 export const db = getFirestore();
 
-export const createUserFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+
+    userAuth,
+
+    //additional information object enable us to collect information tha is not passes to the  createUserWithEmailAndPassword method.
+    additionalInformation = {},
+
+
+) => {
+    if (!userAuth) return;
     const userDocRef = doc(db, 'users', userAuth.uid)
     console.log(userDocRef)
 
@@ -68,7 +79,8 @@ export const createUserFromAuth = async (userAuth) => {
 
                 displayName,
                 email,
-                createdAt
+                createdAt,
+                ...additionalInformation
             }
 
             )
@@ -79,3 +91,11 @@ export const createUserFromAuth = async (userAuth) => {
 
     return userDocRef;
 }
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+
+    if (!email || !password) return;
+
+    return await createUserWithEmailAndPassword(email, password)
+}
+
