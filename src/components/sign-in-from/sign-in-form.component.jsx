@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import FormInput from '../form-input/form-input.component'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
-import Button from '../Button/button.component'
+import Button, { BUTTON_TYPE_CLASSES } from '../Button/button.component'
 
 import './sign-in-form.styles.scss'
 const formFields = {
@@ -112,7 +112,7 @@ const SignInForm = () => {
 
                     {/* passed the firebase signInWithGooglePopup method directly on the onclick method 
                     instead of passing another function to help us sign in with google */}
-                    <Button type='button' buttonType="google" onClick={SignInWithGoogle}> Sign in with Google</Button>
+                    <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={SignInWithGoogle}> Sign in with Google</Button>
 
 
                 </div>

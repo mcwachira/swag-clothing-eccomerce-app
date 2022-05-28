@@ -4,7 +4,7 @@ import { createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component';
 
 import './sign-up-form.styles.scss'
-import Button from '../Button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../Button/button.component';
 
 
 //setting up an object that will contain the initial form values
@@ -131,7 +131,7 @@ const SignUpForm = () => {
 
                 />
 
-                <Button type='submit'> Submit</Button>
+                <Button buttonType={BUTTON_TYPE_CLASSES.base} type='submit'> Submit</Button>
             </form>
 
         </div>
