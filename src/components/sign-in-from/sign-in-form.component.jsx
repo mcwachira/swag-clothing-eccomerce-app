@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
 import Button, { BUTTON_TYPE_CLASSES } from '../Button/button.component'
 
-import './sign-in-form.styles.scss'
+import { SignInContainer, ButtonContainer } from './sign-in-form.styles'
 const formFields = {
     email: "",
     password: "",
@@ -74,7 +74,7 @@ const SignInForm = () => {
         }
     }
     return (
-        <div className='sign-in-container'>
+        <SignInContainer>
             <h2>
                 I already Have an Account
             </h2>
@@ -107,7 +107,7 @@ const SignInForm = () => {
                     value={password}
 
                 />
-                <div className="button-Container">
+                <ButtonContainer>
                     <Button type='submit'> Submit</Button>
 
                     {/* passed the firebase signInWithGooglePopup method directly on the onclick method 
@@ -115,12 +115,12 @@ const SignInForm = () => {
                     <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={SignInWithGoogle}> Sign in with Google</Button>
 
 
-                </div>
+                </ButtonContainer>
             </form>
 
 
 
-        </div>
+        </SignInContainer>
     )
 }
 

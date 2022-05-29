@@ -1,4 +1,6 @@
-.directory-container {
+import styled from 'styled-components'
+
+export const DirectoryContainer = styled.div`
 	min-width: 30%;
 	height: 240px;
 	flex: 1 1 auto;
@@ -41,8 +43,11 @@
 		background-position: center;
 	}
 
-	.directory-body-container {
-		height: 90px;
+`
+
+
+export const DirectoryBodyContainer = styled.div`
+	height: 90px;
 		padding: 0 25px;
 		display: flex;
 		flex-direction: column;
@@ -64,5 +69,14 @@
 			font-weight: lighter;
 			font-size: 16px;
 		}
-	}
-}
+
+			&:hover {
+		cursor: pointer;
+			opacity: 0.9;
+		}
+	
+
+`
+
+
+
