@@ -29,12 +29,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAipkFORrkxMrILBGJmUq_N-6jKTE0Y0M0",
-    authDomain: "swag-ecommerce-db.firebaseapp.com",
-    projectId: "swag-ecommerce-db",
-    storageBucket: "swag-ecommerce-db.appspot.com",
-    messagingSenderId: "415060715975",
-    appId: "1:415060715975:web:818d826c87b02a62e9d1e2"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY || 'mock_key', //the mock key just enables firebase to work  as m providing an   string instead of an empty value
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
