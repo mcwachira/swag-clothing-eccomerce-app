@@ -61,6 +61,8 @@ export const SignInWithGoogleRedirect = () => signInWithRedirect(auth, provider)
 export const db = getFirestore();
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = collection(db, collectionKey);
+
+    //batch will enable us write multiple documents to a collection atm the same time
     const batch = writeBatch(db);
     objectsToAdd.forEach((object) => {
         const docRef = doc(collectionRef, object.title.toLowerCase());
@@ -83,6 +85,20 @@ export const getCategoriesAndDocuments = async () => {
   return querySnapshot.docs.map(categories => categories.data())
  
 }
+
+// export const getCategoriesAndDocuments = async () =>{
+//     const collectionRef = collection(db, 'categories');
+//     const q = query(collectionRef);
+//     const querySnapshot = await getDocs(q);
+//     const categoriesMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
+//         const {title, items } = docSnapshot.data()
+//         acc[title.toLowerCase()] = items
+        
+//     } )
+
+
+//     return categoriesMap
+// }
 export const createUserDocumentFromAuth = async (
 
     userAuth,

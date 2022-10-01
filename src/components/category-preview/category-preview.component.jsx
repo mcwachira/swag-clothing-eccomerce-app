@@ -15,7 +15,7 @@ const CategoryPreview = ({ products, title }) => {
 
                 {
                     products
-                        .filter((product, index) => index < 4)
+                        .filter((_, index) => index < 4)
                         .map((product) => (<ProductCard key={product.id} product={product} />))
                 }
             </Preview>

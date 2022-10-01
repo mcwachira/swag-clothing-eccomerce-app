@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemsToCart, removeCartItems, clearCartItems } from '../../redux/cart/cart.actions'
 import { selectCartItems } from '../../redux/cart/cart.selector'
-import './checkout-item.styles.scss'
+import { CheckOutItemContainer } from './checkout-item.styles.'
+
 const CheckOutItem = ({ cartItem }) => {
 
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const CheckOutItem = ({ cartItem }) => {
     return (
 
 
-        <div className="checkout-item-container" >
+        <CheckOutItemContainer >
 
             <div className="image-container">
                 <img src={imageUrl} alt={`${name}`} />
@@ -43,7 +44,7 @@ const CheckOutItem = ({ cartItem }) => {
             <div className="remove-button" onClick={clearItemHandler}>
                 &#10005;
             </div>
-        </div>
+        </CheckOutItemContainer>
 
 
 

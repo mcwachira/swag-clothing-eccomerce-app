@@ -9,7 +9,7 @@ import { selectCartItems } from '../../redux/cart/cart.selector'
 const ProductCard = ({ product }) => {
 
 const dispatch = useDispatch()
-    
+    console.log(product.imageUrl)
 
     const { imageUrl, name, price, id } = product
     const cartItems = useSelector(selectCartItems)
@@ -22,7 +22,7 @@ const dispatch = useDispatch()
 
     return (
         <ProductCardContainer key={id}>
-            <img src={imageUrl} alt={name} />
+            <img src={imageUrl} alt={`${name}`} />
             <FooterContainer>
                 <ProductName className='name'> {name}</ProductName>
                 <ProductPrice className='price'>{price}$</ProductPrice>
