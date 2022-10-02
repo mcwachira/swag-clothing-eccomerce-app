@@ -1,4 +1,4 @@
-import { waitForPendingWrites } from 'firebase/firestore'
+
 import {compose, createStore, applyMiddleware} from 'redux'
 import logger from 'redux-logger'
 import { persistStore, persistReducer } from 'redux-persist'
