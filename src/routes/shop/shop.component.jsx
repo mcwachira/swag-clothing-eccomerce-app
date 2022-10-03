@@ -4,7 +4,7 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 
 import Category from '../category/category.component'
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils"
-import {fetchCategoriesAsync} from '../../redux/category/category.action'
+import { fetchCategoriesStart } from '../../redux/category/category.action'
 
 import { useDispatch} from 'react-redux'
 
@@ -13,7 +13,7 @@ const Shop = () => {
     const dispatch = useDispatch()
     useEffect(() => {
     
-            dispatch(fetchCategoriesAsync())
+            dispatch(fetchCategoriesStart())
      
     }, [dispatch])
 
