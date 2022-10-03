@@ -7,6 +7,8 @@ import { loggerMiddleware } from '../middleware/looger'
 //root reducer
 import { rootReducer } from '../root-reducer'
 import thunk from 'redux-thunk'
+import createSagaMiddleware from '@redux-saga/core'
+import { rootSaga } from '../root-saga'
 
 
 const persistConfig ={
@@ -16,7 +18,9 @@ const persistConfig ={
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
-const middlewares =[process.env.NODE_ENV ==="development" && loggerMiddleware, thunk].filter(Boolean)
+
+const sageMiddleware = createSagaMiddleware()
+const middlewares =[process.env.NODE_ENV ==="development" && loggerMiddleware, thunk, sageMiddleware].filter(Boolean)
 
 // const thunkMiddleware = (store) => (next) => (action) => {
 //     if(typeof(action) === 'function'){
@@ -31,4 +35,5 @@ const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares));
 //undefined maybe the default state, composeEnhancers are passed at the end 
 export const store = createStore(persistedReducer, undefined, composedEnhancers)
 
+sageMiddleware.run(rootSaga)
 export const persistor = persistStore(store)
