@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './sign-up-form.styles.scss'
 import { createAuthWithEmailAndPassword , createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
+
 
 
 const defaultFormFields = {
@@ -29,6 +30,7 @@ setFormValues(defaultFormFields)
 
         e.preventDefault(); 
 
+
         //check if password and confirm password are correct
 
         if(password!== confirmPassword){
@@ -38,8 +40,11 @@ setFormValues(defaultFormFields)
         
         try {
             const {user}= await createAuthWithEmailAndPassword(email, password)
+           
           await  createUserDocumentFromAuth(user, { displayName})
           resetFormFields()
+    
+       
             
         } catch (error) {
             if(error.code ==='auth/email-already-in-use'){
@@ -71,7 +76,7 @@ setFormValues(defaultFormFields)
        <FormInput label="Password"type='password' required onChange={handleChange} name='password' value={password}/>    
        
        <FormInput label="Confirm Password"type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>   
-       <Button type='submit'>
+       <Button >
          
         Sign up 
        </Button>

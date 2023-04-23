@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './sign-in-form.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
@@ -15,7 +15,6 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formValues, setFormValues] =  useState(defaultFormFields)
 
-
     const handleChange = (e) => {
 const {name , value} =e.target
  setFormValues({...formValues, [name]: value})
@@ -29,7 +28,8 @@ setFormValues(defaultFormFields)
 
     const loginGoogle =async () => {
         const {user} =   await signInWithGooglePopup()
-         await  createUserDocumentFromAuth(user)
+       
+ 
 
        }
     const handleSubmit= async(e) => {
@@ -39,7 +39,8 @@ setFormValues(defaultFormFields)
         
         try {
             const response = await signInUserWithEmailAndPassword(email, password)
-            console.log(response)
+
+           // console.log(response)
           resetFormFields()
             
         } catch (error) {
@@ -77,7 +78,10 @@ setFormValues(defaultFormFields)
        <FormInput label="Password"type='password' required onChange={handleChange} name='password' value={password}/>    
        
 
-       <div className='buttons-container'>
+      
+     
+        </form>       
+        <div className='buttons-container'>
        <Button type='submit'>
          
          Sign In 
@@ -88,9 +92,7 @@ setFormValues(defaultFormFields)
           
           google 
          </Button>
-       </div>
-     
-        </form>        
+       </div> 
         </div>
 
     
