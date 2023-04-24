@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -20,7 +21,16 @@ import {
   getDoc, 
   setDoc,
    doc,
-   getFirestore} from 'firebase/firestore'
+   getFirestore,
+   collection,
+   writeBatch,
+   query,
+   docs,
+   getDocs,
+  
+  
+  } from 'firebase/firestore'
+import { batch } from "react-redux";
 const firebaseConfig = {
   apiKey: "AIzaSyA3qxZiTJp14pERpa4rQgoZivHlZBs8QK8",
   authDomain: "swag-v2-eccomerce.firebaseapp.com",
@@ -48,6 +58,50 @@ export const signInWithGooglePopup = () =>  signInWithPopup(auth, provider)
 export const signInWithGoogleRedirect = () =>  signInWithRedirect(auth, provider)
 
 export const db =  getFirestore()
+
+//adding data to firestore database
+
+//collectionKey = name fo collection , objectsToAdd = data in collection
+export const addCollectionsAndDocuments =  async(collectionKey, objectsToAdd) => {
+
+  const collectionRef = collection(db, collectionKey);
+
+
+  const batch = writeBatch(db)
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase())
+    batch.set(docRef, object)
+  })
+
+
+//this will push our data to the firebase database
+await batch.commit();
+console.log('done')
+}
+
+
+
+//fetch data from our database
+export const getCategoriesAndDocuments =  async() => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  //this will give us a snapshot of our categories data
+  const querySnapShot = await getDocs(q)
+
+  const categoryMap = querySnapShot.docs.reduce((acc, docSnapshot) => {
+    const {title, items} =docSnapshot.data()
+    acc[title.toLowerCase()] = items
+
+    return acc
+  }, {})
+
+  return categoryMap;
+
+}
+
+
+
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation) =>{
 
