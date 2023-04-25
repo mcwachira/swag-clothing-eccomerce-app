@@ -1,19 +1,18 @@
-import React , {useEffect} from 'react'
-import { signInWithGooglePopup , auth, createUserDocumentFromAuth, signInWithGoogleRedirect} from '../../utils/firebase/firebase.utils'
+import React from 'react'
+
+import { AuthenticationContainer } from './authentication.styles'
 import SignUpForm from '../../components/sign-up-form/sign-up-form.component'
 import SignInForm from '../../components/sign-in-form/sign-in-form.component'
-import './authentication.styles.scss'
+
 const Authentication = () => {
 
+    return (
+        <AuthenticationContainer >
 
-  return (
-    <div className='authentication-container'>
-<SignInForm/>
-  <SignUpForm/>
-
-    </div>
-    
-  )
+            <SignInForm />
+            <SignUpForm />
+        </ AuthenticationContainer >
+    )
 }
-  
-export default Authentication
+
+export default Authentication 

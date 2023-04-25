@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './sign-in-form.styles.scss'
+import { SignInContainer, ButtonContainer } from './sign-in-form.styles'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
 import { signInWithGooglePopup ,  signInUserWithEmailAndPassword ,createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils'
@@ -65,7 +65,7 @@ setFormValues(defaultFormFields)
     return (
 
 
-    <div  className='sign-up-container'>
+    <SignInContainer>
         <h2>
          I already have an account ?
         </h2>
@@ -81,7 +81,7 @@ setFormValues(defaultFormFields)
       
      
         </form>       
-        <div className='buttons-container'>
+        <ButtonContainer>
        <Button type='submit'>
          
          Sign In 
@@ -92,8 +92,8 @@ setFormValues(defaultFormFields)
           
           google 
          </Button>
-       </div> 
-        </div>
+       </ButtonContainer> 
+        </SignInContainer>
 
     
   )
