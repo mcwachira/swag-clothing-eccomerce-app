@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom'
 
 
 const DirectoryItem = ({ category }) => {
+    const { title, imageUrl, route } = category;
 
     const Navigate = useNavigate();
 
     const onNavigate = () => Navigate(route)
     console.log(category)
-    const { title, imageUrl, route } = category;
-    console.log(title)
+
+
+
     return (
 
 
