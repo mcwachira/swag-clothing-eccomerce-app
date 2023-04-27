@@ -10,29 +10,31 @@ const Home = () => {
       "id": 1,
       "title": "Hats",
       "imageUrl": "./images/hats.png",
+      route:'shop/hats',
     },
     {
       "id": 2,
       "title": "Jackets",
       "imageUrl": "./images/jackets.png",
-      "price": 18
+      route:'shop/jackets',
     },
     {
       "id": 3,
       "title": "Sneakers",
       "imageUrl": "./images/sneakers.png",
-
+      route:'shop/sneakers',
     },
     {
       "id": 4,
       "title": "Womens",
       "imageUrl": "./images/womens.png",
+      route:'shop/womens',
     },
     {
       "id": 5,
       "title": "Mens",
       "imageUrl": "./images/mens.png",
-      "price": 18
+      route:'shop/mens',
     },
 
   ]

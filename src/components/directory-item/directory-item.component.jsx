@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom'
 
 
 const DirectoryItem = ({ category }) => {
+
     const { title, imageUrl, route } = category;
 
-    const Navigate = useNavigate();
 
-    const onNavigate = () => Navigate(route)
-    console.log(category)
+    const navigate = useNavigate();
+
+    const onNavigate = () => navigate(route)
+    // console.log(category)
 
 
 
@@ -24,7 +26,7 @@ const DirectoryItem = ({ category }) => {
 
             <DirectoryBodyContainer onClick={onNavigate}>
                 <h2>
-                    {category.title}
+                    {title}
                 </h2>
                 <p>
                     Shop now

@@ -18,7 +18,7 @@ const Navigation = () => {
         await signOutUser()
         setCurrentUser(null)
     }
-    console.log(currentUser)
+    // console.log(currentUser)
   return (
     <>
 

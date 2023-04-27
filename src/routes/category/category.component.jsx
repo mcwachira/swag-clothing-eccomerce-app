@@ -8,7 +8,7 @@ const  Category = () => {
     const {categories} = useContext(CategoriesContext)
 
     const {category} = useParams()
-    console.log(category)
+
 
     const [products, setProducts] =  useState(categories[category])
 
@@ -22,7 +22,7 @@ const  Category = () => {
 
         <>
           <h2 className="category-title">
-                {category}
+                {category.toUpperCase()}
             </h2>
         
             <div className='category-container'>

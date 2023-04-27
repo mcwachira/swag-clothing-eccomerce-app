@@ -111,8 +111,8 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   console.log(userDocRef)
 
   const userSnapshot = await getDoc(userDocRef)
-  console.log(userSnapshot)
-  console.log(userSnapshot.exists())
+  // console.log(userSnapshot)
+  // console.log(userSnapshot.exists())
 
   //check if a user collection exist and if a specific document exist in the collection and if not create the collection and document 
 

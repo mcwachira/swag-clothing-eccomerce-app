@@ -4,6 +4,9 @@ import ProductCard from '../product-card/product-card.component'
 
 
 const CategoryPreview = ({title, products}) => {
+    // console.log(title)
+
+    // console.log(products)
   return (
     <CategoryPreviewContainer>
     <h2>
