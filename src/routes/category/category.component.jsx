@@ -5,7 +5,6 @@ import ProductCard from '../../components/product-card/product-card.component';
 import { selectCategoryIsLoading ,selectCategoryReducer } from '../../redux/category/category.selector';
 import {CategoryContainer,
     CategoryTitle}  from './category.styles'
-import './category.styles.scss'
 import Spinner from '../../components/spinner/spinner.component';
 
 const  Category = () => {

@@ -15,16 +15,16 @@ export const  fetchCategoriesFailed= (error) => createAction(CATEGORIES_ACTION_T
 //thunk
 
 
-export const fetchCategoriesAsync  = async(dispatch) => {
-    dispatch(fetchCategoriesStart())
-
-    try{
-        const categoriesArray = await  await getCategoriesAndDocuments('categories')
-        dispatch(fetchCategoriesSuccess(categoriesArray))
-    }catch(error){
-        dispatch(fetchCategoriesFailed(error))
-    }
-
-}
+export const fetchCategoriesAsync = () => {
+    return async (dispatch) => {
+      dispatch(fetchCategoriesStart());
+      try {
+        const categoriesArray = await getCategoriesAndDocuments('categories');
+        dispatch(fetchCategoriesSuccess(categoriesArray));
+      } catch (error) {
+        dispatch(fetchCategoriesFailed(error));
+      }
+    };
+  };
 
 
