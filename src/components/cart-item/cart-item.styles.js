@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const cartItemContainer = styled.div`
+export const CartItemContainer = styled.div`
   width: 100%;
   display: flex;
   height: 80px;

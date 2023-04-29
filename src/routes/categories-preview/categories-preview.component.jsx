@@ -1,9 +1,11 @@
 import React from 'react'
 import {useSelector}  from 'react-redux'
 import CategoryPreview from '../../components/category-preview/category-preview.component'
-const CategoriesPreview = () => {
+import { selectCategoryIsLoading ,selectCategoryReducer } from '../../redux/category/category.selector';
 
-  const categories = useSelector((state) => state.categories.categories)
+const CategoriesPreview = () => {
+  const isLoading = useSelector(selectCategoryIsLoading)
+  const categories = useSelector(selectCategoryReducer)
 
 
   return (

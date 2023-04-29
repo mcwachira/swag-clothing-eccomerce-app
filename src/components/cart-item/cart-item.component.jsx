@@ -1,12 +1,12 @@
 import React from 'react'
-import { CartItemDetails, CartItemName, CartItemPrice, cartItemContainer } from './cart-item.styles'
+import { CartItemDetails, CartItemName, CartItemPrice, CartItemContainer } from './cart-item.styles'
 
 
 const CartItem = ({cartItem}) => {
 
   const {name, price, quantity, imageUrl} = cartItem
   return (
-    <cartItemContainer>
+    <CartItemContainer>
 
       <img className='img' src={imageUrl} alt={`${name}`}/>
 
@@ -15,7 +15,7 @@ const CartItem = ({cartItem}) => {
  <CartItemName> {name}</CartItemName>
  <CartItemPrice> {quantity} * {price}</CartItemPrice>
       </CartItemDetails>
-    </cartItemContainer>
+    </CartItemContainer>
   )
 }
 

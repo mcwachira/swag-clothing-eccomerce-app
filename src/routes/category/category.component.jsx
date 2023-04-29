@@ -2,17 +2,22 @@ import React , {useState , useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProductCard from '../../components/product-card/product-card.component';
+import { selectCategoryIsLoading ,selectCategoryReducer } from '../../redux/category/category.selector';
+import {CategoryContainer,
+    CategoryTitle}  from './category.styles'
 import './category.styles.scss'
+import Spinner from '../../components/spinner/spinner.component';
 
 const  Category = () => {
 
 
-    const categories = useSelector((state) => state.categories.categories)
+    const categories = useSelector(selectCategoryReducer)
+    const isLoading = useSelector(selectCategoryIsLoading)
     console.log(categories)
 
     const {category} = useParams()
 
-
+ 
     const [products, setProducts] =  useState(categories[category])
 
 
@@ -24,15 +29,19 @@ const  Category = () => {
     return (
 
         <>
-          <h2 className="category-title">
+          <CategoryTitle>
                 {category.toUpperCase()}
-            </h2>
+            </CategoryTitle>
         
-            <div className='category-container'>
+        {isLoading ? <Spinner/> :<div className='category-container'>
           
+<CategoryContainer>
+{products &&  products.map((product) => <ProductCard key={product.id} product={product}/>)}
 
-          {products &&  products.map((product) => <ProductCard key={product.id} product={product}/>)}
-      </div>
+</CategoryContainer>
+         
+      </div>}
+            
         </>
       
     )

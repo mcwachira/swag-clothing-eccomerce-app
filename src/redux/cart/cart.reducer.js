@@ -2,7 +2,7 @@ import { CART_ACTION_TYPES } from "./cart.types"
 
 
 const INITIAL_STATE = {
-    isCartOpen:true,
+    isCartOpen:false,
  cartItems:[],
 
 }
@@ -21,7 +21,7 @@ export const cartReducer = (state = INITIAL_STATE, action ={}) => {
               cartItems: payload,
             }
            
-            case CART_ACTION_TYPES.SET_CART_OPEN:
+            case CART_ACTION_TYPES.SET_IS_CART_OPEN:
                 return {
                     ...state,
                     isCarOpen:payload,

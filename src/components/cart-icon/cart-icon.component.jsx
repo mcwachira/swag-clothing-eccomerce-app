@@ -13,12 +13,12 @@ const cartCount = useSelector(selectCartCount)
 const isCartOpen = useSelector(selectCartIsOpen)
 
 
-  const handleOpen = () => dispatch(setIsCartOpen(!isCartOpen));
+  const toggleIsCartOpen = () => dispatch(setIsCartOpen(isCartOpen));
 
   return (
- <CartContainer onClick={handleOpen}>
+ <CartContainer onClick={toggleIsCartOpen}>
 
-<StyledShoppingIcon className='shopping-icon '/>
+<StyledShoppingIcon className='shopping-icon'/>
 
 <ItemCount>{cartCount}</ItemCount>
 

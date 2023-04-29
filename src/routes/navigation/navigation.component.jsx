@@ -1,7 +1,10 @@
 import React, {useContext} from 'react'
 import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
-import './navigation.styles.scss'
+import {NavigationContainer,
+    LogoContainer,
+    NavigationLinksContainer,
+    NavigationLink,} from './navigation.styles'
 import {ReactComponent as CrownLogo} from '../../assets/crown.svg'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 import CartIcon from '../../components/cart-icon/cart-icon.component'
@@ -27,31 +30,31 @@ const Navigation = () => {
   return (
     <>
 
-    <div className='navigation'>
+    <NavigationContainer>
 
-        <div className='logo-container'>
+        <LogoContainer>
             <Link to='/'>
             <CrownLogo className='logo'/>
             </Link>
 
             
-        </div>
+        </LogoContainer>
 
-    <div className='nav-links-container'>
+    <NavigationLinksContainer>
 
-       <Link className='nav-link' to='/shop'>SHOP</Link>
-       {currentUser ? <span className='nav-link' onClick={signOutHandler}> SIGN OUT</span> :    <Link className='nav-link' to='/auth'>Sign in</Link>}
+       <NavigationLink  to='/shop'>SHOP</NavigationLink>
+       {currentUser ? <span className='nav-link' onClick={signOutHandler}> SIGN OUT</span> :    <NavigationLink  to='/auth'>Sign in</NavigationLink>}
       
       <CartIcon/>
 
 
-       </div>
+       </NavigationLinksContainer>
 
 {isCartOpen &&     <CartDropDown/>}
     
        
     
-    </div>
+    </NavigationContainer>
         <Outlet/>
         </>
   )
