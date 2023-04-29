@@ -1,5 +1,13 @@
 import React from 'react'
-import {CheckOutItemContainer} from './checkout-item.styles.js'
+import {
+    CheckoutItemContainer,
+    ImageContainer,
+    BaseSpan,
+    Quantity,
+    Arrow,
+    Value,
+    RemoveButton,
+  } from './checkout-item.styles';
 import { addItemsToCart, removeItemsFromCart, deleteItemsInCart} from '../../redux/cart/cart.actions.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCartItems } from '../../redux/cart/cart.selector.js'
@@ -13,35 +21,19 @@ const CheckoutItem = ({cartItem}) => {
     
   return (
   
- <CheckOutItemContainer>
-<div className="image-container">
-    
-    <img src={imageUrl} alt={`${name}`} className='img' />
-    
-    </div>  
-
-<span className="name">
-    {name}
-</span>
-<span className="quantity">
-<div className="arrow" onClick={() => dispatch(removeItemsFromCart(cartItems,cartItem))}>
-    &#10094;
-</div>
-<div className="value">
-{quantity}
-</div>
-
-
-<div className="arrow" onClick={() => dispatch(addItemsToCart(cartItems,cartItem))}>
-
-&#10095;
-</div>
-</span>
-<span className="price">
-    {price}
-</span>
-<div className="remove-button" onClick={() => dispatch(deleteItemsInCart(cartItems,cartItem))}>&#10005;</div>
- </CheckOutItemContainer>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <img src={imageUrl} alt={`${name}`} />
+      </ImageContainer>
+      <BaseSpan> {name} </BaseSpan>
+      <Quantity>
+        <Arrow onClick={removeItemsFromCart}>&#10094;</Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={addItemsToCart}>&#10095;</Arrow>
+      </Quantity>
+      <BaseSpan> {price}</BaseSpan>
+      <RemoveButton onClick={deleteItemsInCart}>&#10005;</RemoveButton>
+    </CheckoutItemContainer>
 
   )
 }

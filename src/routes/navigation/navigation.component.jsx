@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch} from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import {NavigationContainer,
     LogoContainer,
@@ -12,14 +12,16 @@ import CartDropDown from '../../components/cart-dropdown/cart-dropdown.component
 
 import { selectCartIsOpen } from '../../redux/cart/cart.selector'
 import { setCurrentUser } from '../../redux/user/user.actions'
+import { selectCurrentUser } from '../../redux/user/user.selector'
 const Navigation = () => {
 
+    const dispatch = useDispatch()
   
     const isCartOpen  = useSelector(selectCartIsOpen)
 
   
 
-    const currentUser = useSelector((state)=> (state.user.currentUser))
+    const currentUser = useSelector(selectCurrentUser)
     console.log(currentUser)
     const signOutHandler = async() => {
 

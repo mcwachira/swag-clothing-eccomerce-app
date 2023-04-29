@@ -135,7 +135,7 @@ if(!userSnapshot.exists()){
 }
 
 //if the snapshot exits wer just return it
-return userDocRef
+return userSnapshot
 
 }
 
@@ -159,4 +159,22 @@ export const signOutUser = async() => {
 }
 export const onAuthStateChangeListener = (callback) => {
   return  onAuthStateChanged(auth, callback)
+}
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+  
+const unsubscribe =  onAuthStateChanged(auth, 
+
+    (userAuth) =>{
+    
+    //prevent memory leak
+    unsubscribe();
+    resolve(userAuth)
+
+  },
+  reject 
+  )
+})
+
 }
