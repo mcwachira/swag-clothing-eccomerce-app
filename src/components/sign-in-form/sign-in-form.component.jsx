@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { SignInContainer, ButtonContainer } from './sign-in-form.styles'
 import FormInput from '../form-input/form-input.component'
-import Button from '../button/button.component'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 import { signInWithGooglePopup ,  signInUserWithEmailAndPassword ,createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils'
 
 
@@ -82,17 +82,15 @@ setFormValues(defaultFormFields)
      
         </form>       
         <ButtonContainer>
-       <Button type='submit'>
-         
-         Sign In 
-        </Button>
-        
- 
-        <Button type='button' buttonType='google' onClick={loginGoogle}>
-          
-          google 
-         </Button>
-       </ButtonContainer> 
+          <Button type='submit'>Sign In</Button>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type='button'
+            onClick={loginGoogle}
+          >
+            Sign In With Google
+          </Button>
+        </ButtonContainer>
         </SignInContainer>
 
     

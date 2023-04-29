@@ -9,6 +9,9 @@ export const UserContext = createContext({
 })
 
 
+//SET INITIAL STATE
+
+const INITIAL_STATE = {currentUser:null}
 
 const USER_ACTION_TYPE = {
     SET_CURRENT_USER : 'SET_CURRENT_USER'
@@ -36,9 +39,7 @@ const userReducer = (state, action) => {
 }
 
 
-//SET INITIAL STATE
 
-const INITIAL_STATE = {currentUser:null}
 export const  UserProvider = ({children})  => {
 
     // const [currentUser, setCurrentUser] = useState(null)
